@@ -61,7 +61,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <main className="container py-4 sm:py-6 px-4 sm:px-6">
         <Header 
-          title="Job Portals in Algeria"
+          title="Job Portals"
           description="Discover job portals and career opportunities in Algeria. Find your next career move."
         />
         

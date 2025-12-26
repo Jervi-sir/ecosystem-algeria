@@ -8,8 +8,14 @@ interface JobCardProps {
 
 const JobCard = ({ job }: JobCardProps) => {
   const [imageError, setImageError] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const domain = new URL(job.url).hostname.replace(/^www\./, '');
   const faviconUrl = `https://fetchfavicon.com/i/${domain}?size=64`;
+  
+  const needsTruncation = job.description.length > 100;
+  const displayDescription = isExpanded || !needsTruncation 
+    ? job.description 
+    : job.description.substring(0, 100);
   
   return (
     <article className="group relative bg-card rounded-2xl border border-border/60 p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1">
@@ -31,8 +37,18 @@ const JobCard = ({ job }: JobCardProps) => {
           <h3 className="font-bold text-lg text-card-foreground truncate mb-1 group-hover:text-primary transition-colors duration-300">
             {job.name}
           </h3>
-          <p className="text-sm text-muted-foreground line-clamp-2">
-            {job.description}
+          <p className="text-sm text-muted-foreground">
+            {displayDescription}
+            {needsTruncation && !isExpanded && '... '}
+            {needsTruncation && isExpanded && ' '}
+            {needsTruncation && (
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="text-xs text-primary hover:text-primary/80 font-medium transition-colors inline"
+              >
+                {isExpanded ? 'Show less' : 'Show more'}
+              </button>
+            )}
           </p>
         </div>
 

@@ -1,47 +1,48 @@
 import { useState, useMemo } from 'react';
 import Header from '@/shared/components/Header';
 import SimpleFilterBar from '@/shared/components/SimpleFilterBar';
-import IncubatorGrid from '../components/IncubatorGrid';
+import AcceleratorGrid from '../components/AcceleratorGrid';
 import Pagination from '@/shared/components/Pagination';
 import Footer from '@/shared/components/Footer';
-import incubatorsData from '@/data/incubators.json';
-import type { Incubator } from '../types';
+import acceleratorsData from '@/data/accelerators.json';
+import type { Accelerator } from '../types';
 import type { SortOrder } from '@/shared/types';
 
-const incubators: Incubator[] = incubatorsData;
+const accelerators: Accelerator[] = acceleratorsData;
 
 const ITEMS_PER_PAGE = 9;
 
-const Incubators = () => {
+const Accelerators = () => {
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCity, setSelectedCity] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  // Extract unique cities from incubators
+  // Extract unique cities from accelerators
   const availableCities = useMemo(() => {
-    const cities = incubators
-      .map((incubator) => incubator.city)
+    const cities = accelerators
+      .map((accelerator) => accelerator.city)
       .filter((city): city is string => Boolean(city))
       .filter((city, index, self) => self.indexOf(city) === index)
       .sort();
     return cities;
   }, []);
 
-  const filteredAndSortedIncubators = useMemo(() => {
-    let result = [...incubators];
+  const filteredAndSortedAccelerators = useMemo(() => {
+    let result = [...accelerators];
 
     // Filter by city
     if (selectedCity !== 'all') {
-      result = result.filter((incubator) => incubator.city === selectedCity);
+      result = result.filter((accelerator) => accelerator.city === selectedCity);
     }
 
     // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase().trim();
-      result = result.filter((incubator) =>
-        incubator.name.toLowerCase().includes(query) ||
-        (incubator.city && incubator.city.toLowerCase().includes(query))
+      result = result.filter((accelerator) =>
+        accelerator.name.toLowerCase().includes(query) ||
+        accelerator.description.toLowerCase().includes(query) ||
+        (accelerator.city && accelerator.city.toLowerCase().includes(query))
       );
     }
 
@@ -56,11 +57,11 @@ const Incubators = () => {
   }, [sortOrder, searchQuery, selectedCity]);
 
   // Pagination
-  const totalPages = Math.ceil(filteredAndSortedIncubators.length / ITEMS_PER_PAGE);
-  const paginatedIncubators = useMemo(() => {
+  const totalPages = Math.ceil(filteredAndSortedAccelerators.length / ITEMS_PER_PAGE);
+  const paginatedAccelerators = useMemo(() => {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredAndSortedIncubators.slice(start, start + ITEMS_PER_PAGE);
-  }, [filteredAndSortedIncubators, currentPage]);
+    return filteredAndSortedAccelerators.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredAndSortedAccelerators, currentPage]);
 
   const handleSearchChange = (query: string) => {
     setSearchQuery(query);
@@ -82,8 +83,8 @@ const Incubators = () => {
     <div className="min-h-screen bg-background">
       <main className="container py-4 sm:py-6 px-4 sm:px-6">
         <Header 
-          title="Incubators"
-          description="Discover incubators supporting and nurturing startups across Algeria."
+          title="Accelerators"
+          description="Discover accelerators providing mentorship, funding, and growth opportunities for startups in Algeria."
         />
         
         <section className="space-y-4 sm:space-y-6">
@@ -92,16 +93,16 @@ const Incubators = () => {
             onSortOrderChange={setSortOrder}
             searchQuery={searchQuery}
             onSearchChange={handleSearchChange}
-            totalCount={incubators.length}
-            filteredCount={filteredAndSortedIncubators.length}
-            searchPlaceholder="Search incubators..."
+            totalCount={accelerators.length}
+            filteredCount={filteredAndSortedAccelerators.length}
+            searchPlaceholder="Search accelerators..."
             cities={availableCities}
             selectedCity={selectedCity}
             onCityChange={handleCityChange}
           />
           
-          <IncubatorGrid
-            incubators={paginatedIncubators}
+          <AcceleratorGrid
+            accelerators={paginatedAccelerators}
             onClearFilters={handleClearFilters}
           />
 
@@ -118,5 +119,5 @@ const Incubators = () => {
   );
 };
 
-export default Incubators;
+export default Accelerators;
 

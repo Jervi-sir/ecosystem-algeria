@@ -319,5 +319,40 @@
     "categoryId": "fintech",
     "website": "https://yinvesti.com",
     "linkedin": "https://linkedin.com/company/yinvesti"
+  },
+  {
+    "name": "Krello",
+    "foundedYear": 2023,
+    "categoryId": "saas",
+    "website": "https://krello.net",
+    "linkedin": "https://www.linkedin.com/company/krelloapp"
+  },
+  {
+    "name": "Hotelo",
+    "foundedYear": 2023,
+    "categoryId": "logistics",
+    "website": "https://hotelo.dz",
+    "linkedin": "https://www.linkedin.com/company/hotelobooking"
+  },
+  {
+    "name": "Floppy Delivery",
+    "foundedYear": 2021,
+    "categoryId": "logistics",
+    "website": "https://floppy-delivery.cc",
+    "linkedin": "https://www.linkedin.com/company/floppydelivery"
+  },
+  {
+    "name": "Bricoram",
+    "foundedYear": 2023,
+    "categoryId": "saas",
+    "website": "https://bricoram.com",
+    "linkedin": "https://www.linkedin.com/company/bricoram"
+  },
+  {
+    "name": "Fatoura",
+    "foundedYear": 2020,
+    "categoryId": "saas",
+    "website": "https://fatoura.app",
+    "linkedin": "https://www.linkedin.com/company/fatoura-app"
   }
 ]

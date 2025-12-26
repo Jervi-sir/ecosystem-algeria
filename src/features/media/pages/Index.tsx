@@ -72,8 +72,8 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <main className="container py-4 sm:py-6 px-4 sm:px-6">
         <Header 
-          title="Media Directory"
-          description="Discover podcasts, videos, and newsletters from the Algerian startup ecosystem."
+          title="Media"
+          description="Discover podcasts, videos, and newsletters from the Algerian ecosystem."
         />
         
         <section className="space-y-4 sm:space-y-6">

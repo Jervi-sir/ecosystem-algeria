@@ -9,7 +9,14 @@ interface MediaCardProps {
 
 const MediaCard = ({ media, category }: MediaCardProps) => {
   const [imageError, setImageError] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const showImage = media.image && !imageError;
+  
+  // Check if description is long enough to need truncation (approximately 150 characters for 3 lines)
+  const needsTruncation = media.description.length > 150;
+  const displayDescription = isExpanded || !needsTruncation 
+    ? media.description 
+    : media.description.substring(0, 150);
 
   return (
     <article className="group relative bg-card rounded-2xl border border-border/60 p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1">
@@ -35,8 +42,18 @@ const MediaCard = ({ media, category }: MediaCardProps) => {
           {category && (
             <p className="text-sm font-medium text-primary/80 mb-2">{category.name}</p>
           )}
-          <p className="text-sm text-muted-foreground line-clamp-3">
-            {media.description}
+          <p className="text-sm text-muted-foreground">
+            {displayDescription}
+            {needsTruncation && !isExpanded && '... '}
+            {needsTruncation && isExpanded && ' '}
+            {needsTruncation && (
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="text-xs text-primary hover:text-primary/80 font-medium transition-colors inline"
+              >
+                {isExpanded ? 'Show less' : 'Show more'}
+              </button>
+            )}
           </p>
         </div>
 
