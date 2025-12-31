@@ -59,5 +59,13 @@
     "linkedin": "https://www.linkedin.com/company/dz-makers-lab",
     "city": "Oran",
     "mapLocation": "https://maps.app.goo.gl/4rshHwDz977S6nVz9"
+  },
+  {
+    "name": "Business Valley",
+    "foundedYear": 2021,
+    "website": "https://linktr.ee/Business.valley",
+    "linkedin": "https://www.linkedin.com/company/business-valley",
+    "city": "Batna",
+    "mapLocation": "https://maps.app.goo.gl/tXuA5AQN11RQBMkx5"
   }
 ]
