@@ -28,6 +28,15 @@
     "linkedin": "https://linkedin.com/company/alpayneo"
   },
   {
+    "name": "ALSINA AI",
+    "foundedYear": 2025,
+    "categoryIds": [
+      "edtech",
+      "ai"
+    ],
+    "website": "https://alsina.ai"
+  }
+  {
     "name": "Amentech",
     "foundedYear": 2022,
     "categoryIds": [
@@ -176,6 +185,15 @@
     "website": "https://dzdoc.com",
     "linkedin": "https://linkedin.com/company/dzdoc"
   },
+  {
+    "name": "DZ Teacher",
+    "foundedYear": 2024,
+    "categoryIds": [
+      "edtech",
+      "ai"
+    ],
+    "website": "https://dzteacher.app"
+  }
   {
     "name": "Emploitic",
     "foundedYear": 2006,
@@ -533,6 +551,15 @@
     "linkedin": "https://www.linkedin.com/company/nexopizza"
   },
   {
+    "name": "Oathentiq",
+    "foundedYear": 2020,
+    "categoryIds": [
+      "legaltech"
+    ],
+    "website": "https://oathentiq.com",
+    "linkedin": "https://www.linkedin.com/company/oathentiq"
+  }
+  {
     "name": "Octodet",
     "foundedYear": 2019,
     "categoryIds": [
@@ -735,6 +762,15 @@
     ],
     "website": "https://www.sofizpay.tech",
     "linkedin": "https://linkedin.com/company/sofizpay"
+  },
+  {
+    "name": "Sooqme",
+    "foundedYear": 2024,
+    "categoryIds": [
+      "ecommerce"
+    ],
+    "website": "https://sooqme.com",
+    "linkedin": "https://www.linkedin.com/company/sooqme"
   },
   {
     "name": "Spinet",
