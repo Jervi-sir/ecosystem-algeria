@@ -21,6 +21,11 @@ if (!supabaseUrl || !supabaseKey) {
   process.exit(1);
 }
 
+console.log("Debug Supabase Config:");
+console.log(`URL: '${supabaseUrl}' (Length: ${supabaseUrl.length})`);
+// console.log(`Key: '${supabaseKey}'`); // Key is technically public but let's just check URL for now
+
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function readJson(filename: string) {
@@ -141,6 +146,7 @@ async function seed() {
       founded_year: entityData.founded_year ? parseInt(entityData.founded_year) : null,
       map_location: entityData.map_location,
       image_url: entityData.image_url,
+      status: 'approved',
       ...extraData
     };
 

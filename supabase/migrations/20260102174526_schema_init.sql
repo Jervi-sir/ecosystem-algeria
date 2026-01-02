@@ -79,7 +79,9 @@ CREATE TABLE entities (
     founded_year INTEGER,    
     map_location TEXT,       
     image_url TEXT,          
-    
+
+    status TEXT NOT NULL DEFAULT 'pending',
+
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
