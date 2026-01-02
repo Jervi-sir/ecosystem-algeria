@@ -170,7 +170,7 @@ export function DataTable<T extends { id: string | number }>({
       </div>
 
       {totalPages > 1 && (
-        <div className="flex items-center justify-end space-x-2 py-4">
+        <div className="flex items-center justify-center space-x-2 py-4">
           <Button
             variant="outline"
             size="sm"
@@ -179,9 +179,67 @@ export function DataTable<T extends { id: string | number }>({
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
-          <div className="text-sm text-muted-foreground">
-            Page {page} of {totalPages}
+
+          {/* Pagination Numbers */}
+          <div className="flex items-center gap-1">
+            {(() => {
+              const items = [];
+              // Always show first page
+              items.push(
+                <Button
+                  key={1}
+                  variant={page === 1 ? "default" : "outline"}
+                  size="sm"
+                  className="w-8 h-8 p-0"
+                  onClick={() => setPage(1)}
+                >
+                  1
+                </Button>
+              );
+
+              // Start ellipsis
+              if (page > 3) {
+                items.push(<span key="start-ellipsis" className="px-1">...</span>);
+              }
+
+              // Middle pages (current - 1, current, current + 1)
+              for (let i = Math.max(2, page - 1); i <= Math.min(totalPages - 1, page + 1); i++) {
+                items.push(
+                  <Button
+                    key={i}
+                    variant={page === i ? "default" : "outline"}
+                    size="sm"
+                    className="w-8 h-8 p-0"
+                    onClick={() => setPage(i)}
+                  >
+                    {i}
+                  </Button>
+                );
+              }
+
+              // End ellipsis
+              if (page < totalPages - 2) {
+                items.push(<span key="end-ellipsis" className="px-1">...</span>);
+              }
+
+              // Always show last page if > 1
+              if (totalPages > 1) {
+                items.push(
+                  <Button
+                    key={totalPages}
+                    variant={page === totalPages ? "default" : "outline"}
+                    size="sm"
+                    className="w-8 h-8 p-0"
+                    onClick={() => setPage(totalPages)}
+                  >
+                    {totalPages}
+                  </Button>
+                );
+              }
+              return items;
+            })()}
           </div>
+
           <Button
             variant="outline"
             size="sm"

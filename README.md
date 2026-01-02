@@ -73,7 +73,7 @@ Please refer to folder `./db_brainstorming` where I have added a visual schema, 
 
 I use a "Monolythic" function pattern located at `supabase/functions/api`.
 
-*   **Endpoint**: `POST https://[project-id].supabase.co/functions/v1/api`
+*   **Endpoint**: `POST https://[project-ref].supabase.co/functions/v1/api`
 *   **Logic**: It acts as a router. The client sends a `task` parameter (e.g., `get-entities`, `admin-approve-entity`), and the function executes the logic.
 *   **Auth Guard**: For tasks starting with `admin-`, the function ignores the request unless a valid JWT from a logged-in admin is present in the `Authorization` header.
 

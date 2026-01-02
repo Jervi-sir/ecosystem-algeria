@@ -237,7 +237,7 @@ const EntitiesManager = () => {
         >
           Pending Approvals
           {entities && entities.filter(e => e.status === 'pending').length > 0 && (
-            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] text-white">
+            <span className="flex p-1 px-2 items-center justify-center rounded-md bg-red-500 text-[9px] text-white">
               {entities.filter(e => e.status === 'pending').length}
             </span>
           )}

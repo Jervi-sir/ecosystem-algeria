@@ -11,7 +11,8 @@ import {
   Menu,
   X,
   Database,
-  LogOut
+  LogOut,
+  Home
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -96,7 +97,19 @@ const AdminLayout = () => {
             ))}
           </nav>
 
-          <div className="p-4 border-t border-border mt-auto space-y-4">
+          <div className="p-4 border-t border-border mt-auto space-y-2">
+            {/* Home Client Link */}
+            <NavLink
+              to="/"
+              target="_blank"
+              className={({ isActive }) => cn(
+                "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors border border-transparent hover:bg-muted text-muted-foreground hover:text-foreground w-full",
+              )}
+            >
+              <Home className="w-4 h-4" />
+              View Public Site
+            </NavLink>
+
             <Button
               variant="outline"
               className="w-full justify-start gap-2 text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20 border-red-200 dark:border-red-900"

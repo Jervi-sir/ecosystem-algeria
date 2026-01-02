@@ -26,8 +26,8 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Navigate to="/entities/all" replace />} />
-            <Route path="/entities/:type" element={<EntityListPage />} />
+            <Route path="/" element={<Navigate to="/startups" replace />} />
+            <Route path="/:type" element={<EntityListPage />} />
             <Route path="/about" element={<About />} />
             <Route path="/submit" element={<SubmitEntityPage />} />
             <Route path="/login" element={<LoginPage />} />

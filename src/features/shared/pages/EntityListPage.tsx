@@ -35,7 +35,10 @@ const EntityListPage = ({
   const location = useLocation();
 
   // Determine Type Slug
-  const entityTypeSlug = propSlug || type || 'startup'; // Default to startup if nothing
+  // We assume the URL uses plural (e.g. /startups) but DB uses singular (e.g. startup)
+  // So we strip the trailing 's' from the URL param.
+  const routeTypeSlug = type ? type.replace(/s$/, '') : undefined;
+  const entityTypeSlug = propSlug || routeTypeSlug || 'startup';
 
   // Determine metadata based on slug if not provided
   // Simple mapping can be moved to a util or handled dynamically
@@ -67,17 +70,16 @@ const EntityListPage = ({
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
   const [currentPage, setCurrentPage] = useState(1);
 
-  // 1. Fetch Entity Type ID
+  // 1. Fetch Entity Type ID (via Edge Function)
   const { data: entityType } = useQuery({
     queryKey: ['entityType', entityTypeSlug],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('entity_types')
-        .select('id')
-        .eq('slug', entityTypeSlug)
-        .single();
+      const { data, error } = await supabase.functions.invoke('api?task=get-lookups&table=entity_types', {
+        method: 'GET'
+      });
       if (error) throw error;
-      return data;
+      const found = (data as any[]).find((t: any) => t.slug === entityTypeSlug);
+      return found || null;
     }
   });
 
