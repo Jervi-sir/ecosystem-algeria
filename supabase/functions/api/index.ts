@@ -84,9 +84,8 @@ serve(async (req) => {
 
     // 2. Submit Entity (Public Write)
     else if (method === 'POST' && task === 'submit-entity') {
-      const { status, ...payload } = reqBody;
-      // Force status to pending for public submissions unless using service role (unlikely in this generic handler without auth check)
-      // Actually, we receive the form data.
+      const { status, task: _task, ...payload } = reqBody;
+      // Ensure status is pending for public submissions
 
       // We use the service_role key if we want to bypass RLS, OR just rely on the table's Insert policy (Authenticated/Anon).
       // Assuming table allows insert for Anon.
@@ -127,7 +126,8 @@ serve(async (req) => {
     }
 
     else if (method === 'POST' && task === 'admin-upsert-entity') {
-      const { error: upsertError } = await supabaseAdmin.from('entities').upsert(reqBody);
+      const { task: _task, ...payload } = reqBody;
+      const { error: upsertError } = await supabaseAdmin.from('entities').upsert(payload);
       if (upsertError) throw upsertError;
       data = { success: true };
     }
